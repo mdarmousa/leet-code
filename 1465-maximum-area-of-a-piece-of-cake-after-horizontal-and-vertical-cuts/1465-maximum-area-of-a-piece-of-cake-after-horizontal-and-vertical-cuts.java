@@ -1,28 +1,21 @@
 class Solution {
     public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
-        Arrays.sort(horizontalCuts);
-        Arrays.sort(verticalCuts);
-        
-        long maxHC = horizontalCuts[0];
-        
-        for(int i = 1; i < horizontalCuts.length; i ++){
-            maxHC = Math.max(maxHC, horizontalCuts[i] - horizontalCuts[i-1]);
-        }     
-         maxHC = Math.max(maxHC, h - horizontalCuts[horizontalCuts.length-1]);
 
-            
-            
-            
-       long maxVC = verticalCuts[0];
+       long maxH = maxDist(h, horizontalCuts);
+       long maxV = maxDist(w, verticalCuts);
+
+        return  (int) ((maxH * maxV) % 1000000007);
+    }
+    
+    public long maxDist(int length, int[] input){
+        Arrays.sort(input);
         
-        for(int i = 1; i < verticalCuts.length; i ++){
-            maxVC = Math.max(maxVC, verticalCuts[i] - verticalCuts[i-1]);
+        long maxDist = input[0];
+        
+        for(int i = 1; i < input.length; i ++){
+            maxDist = Math.max(maxDist, input[i] - input[i-1]);
         }     
-         maxVC = Math.max(maxVC, w - verticalCuts[verticalCuts.length-1]);
-        
-        
-        return  (int) ((maxHC * maxVC) % 1000000007);
-        
-        
+         maxDist = Math.max(maxDist, length - input[input.length-1]);
+        return maxDist;
     }
 }
