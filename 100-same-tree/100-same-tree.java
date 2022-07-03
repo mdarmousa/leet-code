@@ -23,7 +23,7 @@ class Solution {
         if(n1 == null && n2 == null) {
             return true;
         }
-        if((n1 == null && n2 != null) || (n1!=null && n2 == null) || (n1.val != n2.val)){
+        if((n1==null ||n2 == null) || (n1.val != n2.val)){
             return false;
         }
         
