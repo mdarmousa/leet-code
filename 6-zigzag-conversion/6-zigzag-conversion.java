@@ -10,8 +10,8 @@ class Solution {
         int curRow = 0;
         boolean goingDown = false;
 
-        for (char c : s.toCharArray()) {
-            rows[curRow].append(c);
+        for (int i = 0; i< s.length(); i ++) {
+            rows[curRow].append(s.charAt(i));
             if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
             curRow += goingDown ? 1 : -1;
         }
