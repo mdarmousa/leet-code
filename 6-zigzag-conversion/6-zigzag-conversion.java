@@ -1,35 +1,23 @@
 class Solution {
     public String convert(String s, int numRows) {
-        
-        StringBuilder [] resArray = new StringBuilder[numRows];
-        
-        
-        
-        int i = 0;
-        while (i < s.length()){
-            for(int j =0; j < resArray.length && i < s.length(); j ++ ){
-                if(resArray[j] == null){
-                   resArray[j] = new StringBuilder(); 
-                } 
-                
-                resArray[j].append(""+s.charAt(i));
-                i++;
-            }
-            for(int j = numRows -2; j > 0 && i < s.length(); j--){
-                resArray[j].append(""+s.charAt(i));
-                i++;
-            } 
-            
+
+        if (numRows == 1) return s;
+
+        List<StringBuilder> rows = new ArrayList<>();
+        for (int i = 0; i < Math.min(numRows, s.length()); i++)
+            rows.add(new StringBuilder());
+
+        int curRow = 0;
+        boolean goingDown = false;
+
+        for (char c : s.toCharArray()) {
+            rows.get(curRow).append(c);
+            if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
+            curRow += goingDown ? 1 : -1;
         }
-        
-        StringBuilder str = new StringBuilder();
-        for(int j = 0; j < resArray.length; j++){
-            if(resArray[j] != null){
-                str.append(resArray[j].toString());
-            }
-        }
-        
-        return str.toString();
+
+        StringBuilder ret = new StringBuilder();
+        for (StringBuilder row : rows) ret.append(row);
+        return ret.toString();
     }
-    
 }
