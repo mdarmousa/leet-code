@@ -22,7 +22,7 @@ class Solution {
         
         int ans = 0;
         for(int face = 1; face<= faces ; face++){
-            if(face > target) continue;
+            if(face > target || dice - 1 < 0 || target - face < 0) continue;
             ans = (ans + getCount(dice - 1, faces, target - face)) % 1000000007;
         }
         
