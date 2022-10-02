@@ -8,10 +8,6 @@ class Solution {
     
     private int getCount(int dice, int faces, int target){
         
-        
-        if(target<0 || dice<0)
-            return 0;
-        
         if(dice ==0 && target == 0){
             return 1;
         }
